@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('my_expenses', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
+            $table->string('name');
+            $table->double('price', 8, 2);
+            $table->date('transection_date');
             $table->timestamps();
         });
     }
