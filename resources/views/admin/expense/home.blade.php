@@ -1,11 +1,14 @@
 @extends('layouts.admin')
 @section('body')
-<h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+<h1 class="h3 mb-4 text-gray-800">My {{$title}} Page</h1>
 @include('layouts.messages')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary float-left">Last 7 days Expense</h6>
-       
+        <h6 class="m-0 font-weight-bold text-primary float-left"><a href="{{route('my_expense.create')}}" class="btn btn-primary">Create New {{$title}}</a></h6>
+        <div class="float-right">
+            <a href="{{route('my_expense.index')}}?days=7" class="btn btn-primary">Last 7 Days {{$title}}</a>
+            <a href="{{route('my_expense.index')}}?days=30" class="btn btn-primary">Last 30 Days {{$title}}</a>
+        </div>
         
     </div>
     <div class="card-body">
@@ -48,4 +51,5 @@
         </div>
     </div>
 </div>
+
 @endsection

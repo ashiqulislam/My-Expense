@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+    <title>{{config('app.name')}} - {{$title}}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('font')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('font')}}/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{{asset('font')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -35,17 +38,24 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">{{config('app.name')}}</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{request()->is('dashboard')?'active':'' }}">
+                <a class="nav-link" href="{{url('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item {{(request()->is('my_expense') || request()->is('my_expense/*'))?'active':''}}">
+                <a class="nav-link" href="{{url('my_expense')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>My Expense</span>
+                </a>
             </li>
 
            
@@ -88,7 +98,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    @yield('body')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -146,6 +156,18 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('font')}}/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('font')}}/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{asset('font')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+        $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
 
