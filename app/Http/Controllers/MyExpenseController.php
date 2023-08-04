@@ -20,6 +20,7 @@ class MyExpenseController extends Controller
     {
         $date = \Carbon\Carbon::today()->subDays(7);
         $data['data'] = MyExpense::where('transection_date','>=',$date)->get();
+        $data['total'] = $data['data']->sum('price');
         $data['title'] = 'Dashboard';
         return view('admin.home', $data);
     }
@@ -29,8 +30,10 @@ class MyExpenseController extends Controller
         if($request->days) {
             $date = \Carbon\Carbon::today()->subDays($request->days);
             $data['data'] = MyExpense::where('transection_date','>=',$date)->get();
+            $data['total'] = $data['data']->sum('price');
         } else {
             $data['data']  = MyExpense::where('user_id', auth()->id())->get();
+            $data['total'] = $data['data']->sum('price');
         }
         $data['title'] = $this->title;
         return view('admin.expense.home', $data);

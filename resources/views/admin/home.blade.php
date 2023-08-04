@@ -21,10 +21,8 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th colspan="2">Total</th>
+                        <th colspan="2">{{$total}}</th>
                     </tr>
                 </tfoot>
                 <tbody>

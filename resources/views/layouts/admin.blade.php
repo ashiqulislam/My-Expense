@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this page -->
     <link href="{{asset('font')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  
 
 </head>
 
@@ -110,7 +111,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; {{config('app.name')}} {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>
@@ -166,7 +167,23 @@
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
         $('#dataTable').DataTable();
+
         });
+        $(function () {
+        var $activeNavbar = $('.sidebar.sidebar-dark.accordion');
+        if ($(window).width() < 768) {
+            $activeNavbar.addClass('toggled');
+            $('body').addClass('sidebar-toggled');
+        } else {
+            $activeNavbar.removeClass('toggled');
+            $('body').removeClass('sidebar-toggled');
+        }
+        
+
+        $(window).resize(function () {
+            if ($(window).width() < 768) $('.sidebar .nav-item.active .collapse').collapse('toggled');
+        });
+    });
     </script>
 
 </body>
